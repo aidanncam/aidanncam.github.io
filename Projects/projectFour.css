@@ -65,6 +65,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   text-align: left;
+  font-family: FontPoppins;
 }
 
 .container img {
