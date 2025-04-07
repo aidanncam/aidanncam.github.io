@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSec Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+
+    <table border="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="Output" disabled>
+                <input type="hidden" id="var1">
+                <input type="hidden" id="var2">
+                <input type="hidden" id="operator">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" id="num1" value="1" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="num2" value="2" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="num3" value="3" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="Plus" value="+" style="width:50px;height:50px;">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="button" id="num4" value="4" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="num5" value="5" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="num6" value="6" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="Minus" value="-" style="width:50px;height:50px;">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="button" id="num7" value="7" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="num8" value="8" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="num9" value="9" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="Multi" value="*" style="width:50px;height:50px;">
+            </td>
+        </tr>
+
+        <tr style="width:100px;height:50px;">
+            <td>
+                <input type="hidden">
+            </td>
+            <td>
+                <input type="button" id="num0" value="0" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="Equals" value="=" style="width:50px;height:50px;">
+            </td>
+            <td>
+                <input type="button" id="Divide" value="/" style="width:50px;height:50px;">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        let var1 = "";
+        let var2 = "";
+        let operator = "";
+
+        function displayToOutput(value) {
+            document.getElementById("Output").value += value;
+
+            if (operator == "") {
+                var1 += value;
+            } else {
+                var2 += value;
+            }
+        };
+
+        function setOperator(op) {
+            if (var1 != "") {
+                operator = op;
+
+                document.getElementById("Output").value += " " + operator + " ";
+            }
+        }
+
+        function calculate() {
+            let total = 0;
+
+            if (operator == "+") {
+                total = Number(var1) + Number(var2);
+            } else if (operator == "-") {
+                total = Number(var1) - Number(var2);
+            } else if (operator == "*") {
+                total = Number(var1) * Number(var2);
+            } else if (operator == "/") {
+                total = Number(var1) / Number(var2);
+            }
+            document.getElementById("Output").value = total
+        }
+
+        document.getElementById("num1").onclick = function() { displayToOutput("1"); };
+        document.getElementById("num2").onclick = function() { displayToOutput("2"); };
+        document.getElementById("num3").onclick = function() { displayToOutput("3"); };
+        document.getElementById("num4").onclick = function() { displayToOutput("4"); };
+        document.getElementById("num5").onclick = function() { displayToOutput("5"); };
+        document.getElementById("num6").onclick = function() { displayToOutput("6"); };
+        document.getElementById("num7").onclick = function() { displayToOutput("7"); };
+        document.getElementById("num8").onclick = function() { displayToOutput("8"); };
+        document.getElementById("num9").onclick = function() { displayToOutput("9"); };
+        document.getElementById("num0").onclick = function() { displayToOutput("0"); };
+
+        document.getElementById("Plus").onclick = function() { setOperator("+"); };
+        document.getElementById("Minus").onclick = function() { setOperator("-"); };
+        document.getElementById("Multi").onclick = function() { setOperator("*"); };
+        document.getElementById("Divide").onclick = function() { setOperator("/"); };
+
+        document.getElementById("Equals").onclick = function() { calculate(); };
+    </script>
+    
+</body>
+</html>
